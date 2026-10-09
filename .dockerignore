@@ -1,0 +1,8 @@
+node_modules
+.medusa
+.git
+.gitignore
+Dockerfile
+.dockerignore
+*.log
+integration-tests
