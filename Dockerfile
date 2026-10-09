@@ -18,5 +18,7 @@ RUN yarn build
 
 EXPOSE 9000
 
-# medusa start runs pending migrations then serves API on :9000
-CMD ["yarn", "start"]
+# Migrate on every boot (idempotent), create the first admin only when
+# ADMIN_EMAIL/ADMIN_PASSWORD are set and the user doesn't exist yet,
+# then serve the API on :9000
+CMD ["sh", "-c", "yarn medusa db:migrate && if [ -n \"$ADMIN_EMAIL\" ]; then yarn medusa user -e \"$ADMIN_EMAIL\" -p \"$ADMIN_PASSWORD\" || true; fi && yarn start"]
