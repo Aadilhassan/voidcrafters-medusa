@@ -14,7 +14,9 @@ RUN corepack enable \
   && yarn install --immutable
 
 COPY . .
-RUN yarn build
+RUN yarn build \
+  && mkdir -p public \
+  && cp -r .medusa/server/public/admin public/admin
 
 EXPOSE 9000
 
