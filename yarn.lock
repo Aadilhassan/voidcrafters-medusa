@@ -2846,20 +2846,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@medusajs/file-s3@npm:^2.21.2":
-  version: 2.21.2
-  resolution: "@medusajs/file-s3@npm:2.21.2"
-  dependencies:
-    "@aws-sdk/client-s3": "npm:^3.980.0"
-    "@aws-sdk/lib-storage": "npm:^3.980.0"
-    "@aws-sdk/s3-request-presigner": "npm:^3.980.0"
-    ulid: "npm:^2.3.0"
-  peerDependencies:
-    "@medusajs/framework": 2.21.2
-  checksum: 10c0/f32749563e38f1ec5a3ac58f77cd66eba30519d40640bc48ab290330899521f559befe7e92daac1aeaaf1e7de96145f39d96cc082b8ada247d1777c437f8b120
-  languageName: node
-  linkType: hard
-
 "@medusajs/file@npm:2.18.0":
   version: 2.18.0
   resolution: "@medusajs/file@npm:2.18.0"
@@ -13011,7 +12997,7 @@ __metadata:
   dependencies:
     "@medusajs/admin-sdk": "npm:2.18.0"
     "@medusajs/cli": "npm:2.18.0"
-    "@medusajs/file-s3": "npm:^2.21.2"
+    "@medusajs/file-s3": "npm:2.18.0"
     "@medusajs/framework": "npm:2.18.0"
     "@medusajs/medusa": "npm:2.18.0"
     "@medusajs/test-utils": "npm:2.18.0"

@@ -101,14 +101,22 @@ module.exports = defineConfig({
     ...(R2_CONFIGURED
       ? [
           {
-            resolve: "@medusajs/file-s3",
+            resolve: "@medusajs/file",
             options: {
-              file_url: process.env.R2_PUBLIC_URL!,
-              access_key_id: process.env.R2_ACCESS_KEY_ID!,
-              secret_access_key: process.env.R2_SECRET_ACCESS_KEY!,
-              region: "auto",
-              bucket: process.env.R2_BUCKET!,
-              endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+              providers: [
+                {
+                  resolve: "@medusajs/file-s3",
+                  id: "s3",
+                  options: {
+                    file_url: process.env.R2_PUBLIC_URL!,
+                    access_key_id: process.env.R2_ACCESS_KEY_ID!,
+                    secret_access_key: process.env.R2_SECRET_ACCESS_KEY!,
+                    region: "auto",
+                    bucket: process.env.R2_BUCKET!,
+                    endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+                  },
+                },
+              ],
             },
           },
         ]
