@@ -1,44 +1,48 @@
 import { MedusaContainer } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
 import { TRACKING_MODULE } from "../modules/tracking"
+import { sendAbandonment } from "../modules/tracking/notifier"
 
-const STAGES = [
+export const STAGES = [
   { stage: 1, afterHours: 2, subject: "Your relics are waiting 🖤" },
   { stage: 2, afterHours: 24, subject: "Still thinking? 10% off your crypt drop" },
   { stage: 3, afterHours: 72, subject: "Last call from the crypt" },
 ]
 
-function recoveryUrl(cartId: string) {
+export function recoveryUrl(cartId: string) {
   const base = (
     process.env.STOREFRONT_URL || "https://voidcrafters.com"
   ).replace(/\/$/, "")
   return `${base}/in/recover?cart_id=${cartId}`
 }
 
-async function sendMail(opts: {
-  to: string
+export function abandonmentEmail(
+  cart: any,
   subject: string
-  html: string
-}) {
-  const apiKey = process.env.SENDGRID_API_KEY
-  const from =
-    process.env.SENDGRID_FROM || "Voidcrafters <crypt@voidcrafters.com>"
-  if (!apiKey) {
-    return { sent: false, reason: "SENDGRID_API_KEY not configured" }
-  }
-  const sg = (await import("@sendgrid/mail")).default
-  sg.setApiKey(apiKey)
-  await sg.send({ to: opts.to, from, subject: opts.subject, html: opts.html })
-  return { sent: true }
+): string {
+  const items = (cart.items || [])
+    .map((i: any) => `<li>${i.title} × ${i.quantity}</li>`)
+    .join("")
+  const total = ((cart.total || 0) / 100).toFixed(0)
+
+  return `
+    <div style="font-family:Georgia,serif;background:#0a0a0a;color:#e8e6e1;padding:32px;max-width:560px">
+      <h1 style="letter-spacing:.15em">VOIDCRAFTERS</h1>
+      <h2>${subject}</h2>
+      <p>You left these in your cart:</p>
+      <ul>${items}</ul>
+      <p style="font-size:20px">Total: ₹${total} ${cart.currency_code?.toUpperCase() || ""}</p>
+      <p><a href="${recoveryUrl(cart.id)}" style="background:#8a0303;color:#e8e6e1;padding:12px 28px;text-decoration:none;letter-spacing:.2em">RESUME CHECKOUT</a></p>
+      <p style="color:#6e6d69;font-size:12px">Prepaid secure · 7-day exchange · Free ship over ₹499</p>
+    </div>`
 }
 
-// Shopify-style abandoned checkout: 2h / 24h / 72h sequence for carts
-// with an email + items that never converted. Without a mail key the
-// rows still accumulate as "pending" and stay visible in the admin
-// Intelligence page until sending is switched on.
-export default async function abandonedCheckoutJob(
-  container: MedusaContainer
-) {
+// Shared by the hourly job and the manual admin trigger. Returns counts
+// so the dashboard can report what happened.
+export async function runAbandonedSweep(container: MedusaContainer): Promise<{
+  processed: number
+  sent: number
+  pending: number
+}> {
   const logger = container.resolve("logger")
   const tracking: any = container.resolve(TRACKING_MODULE)
   const query: any = container.resolve("query")
@@ -51,7 +55,8 @@ export default async function abandonedCheckoutJob(
     pagination: { take: 200 },
   })
 
-  let queued = 0
+  let processed = 0
+  let sent = 0
   for (const cart of carts || []) {
     if (!cart.email || !(cart.items || []).length) {
       continue
@@ -71,53 +76,41 @@ export default async function abandonedCheckoutJob(
       continue
     }
 
-    const items = (cart.items || [])
-      .map(
-        (i: any) =>
-          `<li>${i.title} × ${i.quantity} — ${(cart.total / 100).toFixed(0)} ${cart.currency_code?.toUpperCase()}</li>`
-      )
-      .join("")
-
-    const html = `
-      <div style="font-family:Georgia,serif;background:#0a0a0a;color:#e8e6e1;padding:32px;max-width:560px">
-        <h1 style="letter-spacing:.15em">VOIDCRAFTERS</h1>
-        <h2>${dueStage.subject}</h2>
-        <p>You left these in your cart:</p>
-        <ul>${items}</ul>
-        <p><a href="${recoveryUrl(cart.id)}" style="background:#8a0303;color:#e8e6e1;padding:12px 28px;text-decoration:none;letter-spacing:.2em">RESUME CHECKOUT</a></p>
-        <p style="color:#6e6d69;font-size:12px">Prepaid secure · 7-day exchange · Free ship over ₹499</p>
-      </div>`
-
-    const result = await sendMail({
+    const result = await sendAbandonment({
       to: cart.email,
       subject: dueStage.subject,
-      html,
+      html: abandonmentEmail(cart, dueStage.subject),
     })
 
+    const patch = {
+      stage: dueStage.stage,
+      status: result.sent ? "sent" : "pending",
+      channel: result.channel,
+      sent_at: result.sent ? new Date() : undefined,
+    }
     if (row) {
-      await tracking.updateAbandonedCarts([
-        {
-          id: row.id,
-          stage: dueStage.stage,
-          status: result.sent ? "sent" : "pending",
-          sent_at: result.sent ? new Date() : undefined,
-        },
-      ])
+      await tracking.updateAbandonedCarts([{ id: row.id, ...patch }])
     } else {
       await tracking.createAbandonedCarts([
-        {
-          cart_id: cart.id,
-          email: cart.email,
-          stage: dueStage.stage,
-          status: result.sent ? "sent" : "pending",
-          sent_at: result.sent ? new Date() : undefined,
-        },
+        { cart_id: cart.id, email: cart.email, ...patch },
       ])
     }
-    queued++
+    processed++
+    if (result.sent) {
+      sent++
+    }
   }
 
-  logger.info(`Abandoned checkout sweep: ${queued} cart(s) processed`)
+  logger.info(
+    `Abandoned checkout sweep: ${processed} processed, ${sent} sent`
+  )
+  return { processed, sent, pending: processed - sent }
+}
+
+export default async function abandonedCheckoutJob(
+  container: MedusaContainer
+) {
+  await runAbandonedSweep(container)
 }
 
 export const config = {

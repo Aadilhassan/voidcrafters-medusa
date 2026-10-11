@@ -86,6 +86,22 @@
           "enumItems": [],
           "mappedType": "text"
         },
+        "channel": {
+          "name": "channel",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "enumItems": [],
+          "mappedType": "text"
+        },
         "sent_at": {
           "name": "sent_at",
           "type": "timestamptz",
