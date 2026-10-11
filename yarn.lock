@@ -3114,6 +3114,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@medusajs/notification-sendgrid@npm:^2.21.2":
+  version: 2.21.2
+  resolution: "@medusajs/notification-sendgrid@npm:2.21.2"
+  dependencies:
+    "@sendgrid/mail": "npm:^8.1.6"
+  peerDependencies:
+    "@medusajs/framework": 2.21.2
+  checksum: 10c0/3647e4206b02427e13f17536b95cd24546b60bc60ee145eeee0553170517f2ba899aa459e177746b3a1876397a30a14884e164e48cfdef1c429f234eb9def406
+  languageName: node
+  linkType: hard
+
 "@medusajs/notification@npm:2.18.0":
   version: 2.18.0
   resolution: "@medusajs/notification@npm:2.18.0"
@@ -13000,6 +13011,7 @@ __metadata:
     "@medusajs/file-s3": "npm:2.18.0"
     "@medusajs/framework": "npm:2.18.0"
     "@medusajs/medusa": "npm:2.18.0"
+    "@medusajs/notification-sendgrid": "npm:^2.21.2"
     "@medusajs/test-utils": "npm:2.18.0"
     "@rokmohar/medusa-plugin-meilisearch": "npm:^1.4.1"
     "@swc/core": "npm:^1.7.28"

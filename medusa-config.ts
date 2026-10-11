@@ -96,6 +96,11 @@ module.exports = defineConfig({
     // Meta Pixel (browser) can still be added to the storefront directly.
   ],
   modules: [
+    // Anonymous journey tracking + intent tags + abandoned checkout.
+    // Always on; storage is local Postgres, no keys required.
+    {
+      resolve: "./src/modules/tracking",
+    },
     // Cloudflare R2 (S3-compatible) file storage. Falls back to Medusa's
     // built-in local file module when R2 vars are absent.
     ...(R2_CONFIGURED

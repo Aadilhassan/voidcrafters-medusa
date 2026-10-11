@@ -27,6 +27,7 @@
     "@medusajs/file-s3": "2.18.0",
     "@medusajs/framework": "2.18.0",
     "@medusajs/medusa": "2.18.0",
+    "@medusajs/notification-sendgrid": "^2.21.2",
     "@rokmohar/medusa-plugin-meilisearch": "^1.4.1",
     "@variablevic/google-analytics-medusa": "^0.1.1",
     "json-rpc-2.0": "^1.8.1"
