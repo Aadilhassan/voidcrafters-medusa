@@ -24,8 +24,12 @@
   "dependencies": {
     "@medusajs/admin-sdk": "2.18.0",
     "@medusajs/cli": "2.18.0",
+    "@medusajs/file-s3": "^2.21.2",
     "@medusajs/framework": "2.18.0",
-    "@medusajs/medusa": "2.18.0"
+    "@medusajs/medusa": "2.18.0",
+    "@rokmohar/medusa-plugin-meilisearch": "^1.4.1",
+    "@variablevic/google-analytics-medusa": "^0.1.1",
+    "json-rpc-2.0": "^1.8.1"
   },
   "devDependencies": {
     "@medusajs/test-utils": "2.18.0",

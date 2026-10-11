@@ -2846,6 +2846,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@medusajs/file-s3@npm:^2.21.2":
+  version: 2.21.2
+  resolution: "@medusajs/file-s3@npm:2.21.2"
+  dependencies:
+    "@aws-sdk/client-s3": "npm:^3.980.0"
+    "@aws-sdk/lib-storage": "npm:^3.980.0"
+    "@aws-sdk/s3-request-presigner": "npm:^3.980.0"
+    ulid: "npm:^2.3.0"
+  peerDependencies:
+    "@medusajs/framework": 2.21.2
+  checksum: 10c0/f32749563e38f1ec5a3ac58f77cd66eba30519d40640bc48ab290330899521f559befe7e92daac1aeaaf1e7de96145f39d96cc082b8ada247d1777c437f8b120
+  languageName: node
+  linkType: hard
+
 "@medusajs/file@npm:2.18.0":
   version: 2.18.0
   resolution: "@medusajs/file@npm:2.18.0"
@@ -7312,6 +7326,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rokmohar/medusa-plugin-meilisearch@npm:^1.4.1":
+  version: 1.4.3
+  resolution: "@rokmohar/medusa-plugin-meilisearch@npm:1.4.3"
+  dependencies:
+    meilisearch: "npm:^0.56.0"
+  peerDependencies:
+    "@medusajs/admin-sdk": ^2.15.2
+    "@medusajs/framework": ^2.15.2
+    "@medusajs/medusa": ^2.15.2
+    "@medusajs/ui": ^4.1.12
+    "@tanstack/react-query": 5.64.2
+    awilix: ^8.0.1
+    react: ^18
+    react-dom: ^18
+  checksum: 10c0/83e8375e5ab4940a46f97f34b849b48225e013530986ddb590094a2cc1df14f2e0ee6b93cc7614538de851f66826c2f093fd7811edcb688c7fffb4c91004890a
+  languageName: node
+  linkType: hard
+
 "@rolldown/pluginutils@npm:1.0.0-beta.27":
   version: 1.0.0-beta.27
   resolution: "@rolldown/pluginutils@npm:1.0.0-beta.27"
@@ -8777,6 +8809,28 @@ __metadata:
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
   checksum: 10c0/80590e58b041f85613f28cb91508def8a0608d6a96d1bc83092d9f7ec679635ffba443f3c6f8f5b7223fd8808441ad479b357d193ccb3d4b069227d47eaa3879
+  languageName: node
+  linkType: hard
+
+"@variablevic/google-analytics-medusa@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@variablevic/google-analytics-medusa@npm:0.1.1"
+  peerDependencies:
+    "@medusajs/admin-sdk": 2.5.1
+    "@medusajs/cli": 2.5.1
+    "@medusajs/framework": 2.5.1
+    "@medusajs/icons": 2.5.1
+    "@medusajs/medusa": 2.5.1
+    "@medusajs/test-utils": 2.5.1
+    "@medusajs/ui": 4.0.3
+    "@mikro-orm/cli": 6.4.3
+    "@mikro-orm/core": 6.4.3
+    "@mikro-orm/knex": 6.4.3
+    "@mikro-orm/migrations": 6.4.3
+    "@mikro-orm/postgresql": 6.4.3
+    awilix: ^8.0.1
+    pg: ^8.13.0
+  checksum: 10c0/67fff7497dd478449fa2eda5890bd98e81e188925bf1b334117e1d3aca4604d0eb843c7d16da4bda2195a8b17f78b5da7f0fb13d454d5d21c5d00ca08a445ed1
   languageName: node
   linkType: hard
 
@@ -12429,6 +12483,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-rpc-2.0@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "json-rpc-2.0@npm:1.8.1"
+  checksum: 10c0/aa8f0c4ffc34ccf47825653b5fdad46a5c9a3bfccf25cf08443b5861a807e0f078b89e4e2a240cd09db1200ab680a96952f8bf5e616a655c79f5e0bd1c392801
+  languageName: node
+  linkType: hard
+
 "json-schema-traverse@npm:^1.0.0":
   version: 1.0.0
   resolution: "json-schema-traverse@npm:1.0.0"
@@ -12950,16 +13011,20 @@ __metadata:
   dependencies:
     "@medusajs/admin-sdk": "npm:2.18.0"
     "@medusajs/cli": "npm:2.18.0"
+    "@medusajs/file-s3": "npm:^2.21.2"
     "@medusajs/framework": "npm:2.18.0"
     "@medusajs/medusa": "npm:2.18.0"
     "@medusajs/test-utils": "npm:2.18.0"
+    "@rokmohar/medusa-plugin-meilisearch": "npm:^1.4.1"
     "@swc/core": "npm:^1.7.28"
     "@swc/jest": "npm:^0.2.36"
     "@types/jest": "npm:^29.5.13"
     "@types/node": "npm:^20.12.11"
     "@types/react": "npm:^18.3.2"
     "@types/react-dom": "npm:^18.2.25"
+    "@variablevic/google-analytics-medusa": "npm:^0.1.1"
     jest: "npm:^29.7.0"
+    json-rpc-2.0: "npm:^1.8.1"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -12969,6 +13034,13 @@ __metadata:
     yalc: "npm:^1.0.0-pre.53"
   languageName: unknown
   linkType: soft
+
+"meilisearch@npm:^0.56.0":
+  version: 0.56.0
+  resolution: "meilisearch@npm:0.56.0"
+  checksum: 10c0/d94e410ebe9ac0ad525fa3bf12d789a60fd68078a803eeb3e2adacc43f18f4d2ee3572ae1f26e052790b2aa6c848710c04332bbccd60862be2d17c883dfd43d9
+  languageName: node
+  linkType: hard
 
 "merge-descriptors@npm:1.0.3":
   version: 1.0.3
