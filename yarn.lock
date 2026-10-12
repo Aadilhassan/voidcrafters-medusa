@@ -7323,21 +7323,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rokmohar/medusa-plugin-meilisearch@npm:^1.4.1":
-  version: 1.4.3
-  resolution: "@rokmohar/medusa-plugin-meilisearch@npm:1.4.3"
+"@rokmohar/medusa-plugin-meilisearch@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "@rokmohar/medusa-plugin-meilisearch@npm:2.3.1"
   dependencies:
-    meilisearch: "npm:^0.56.0"
+    meilisearch: "npm:^0.62.0"
   peerDependencies:
-    "@medusajs/admin-sdk": ^2.15.2
-    "@medusajs/framework": ^2.15.2
-    "@medusajs/medusa": ^2.15.2
-    "@medusajs/ui": ^4.1.12
+    "@medusajs/admin-sdk": ~2.21.1
+    "@medusajs/framework": ~2.21.1
+    "@medusajs/medusa": ~2.21.1
+    "@medusajs/ui": ^4.2.6
     "@tanstack/react-query": 5.64.2
-    awilix: ^8.0.1
-    react: ^18
-    react-dom: ^18
-  checksum: 10c0/83e8375e5ab4940a46f97f34b849b48225e013530986ddb590094a2cc1df14f2e0ee6b93cc7614538de851f66826c2f093fd7811edcb688c7fffb4c91004890a
+    react: ^18.3.1
+    react-dom: ^18.3.1
+  checksum: 10c0/612b6cf17f0d10433f767ab21d043b5983fdb004cd8e2fe764875348c5a5b1f826e9f4772b098cf5066bd58c7af26e6e754e7fb05c19c3ccf7646adfa53be872
   languageName: node
   linkType: hard
 
@@ -13013,7 +13012,7 @@ __metadata:
     "@medusajs/medusa": "npm:2.18.0"
     "@medusajs/notification-sendgrid": "npm:^2.21.2"
     "@medusajs/test-utils": "npm:2.18.0"
-    "@rokmohar/medusa-plugin-meilisearch": "npm:^1.4.1"
+    "@rokmohar/medusa-plugin-meilisearch": "npm:^2.3.1"
     "@swc/core": "npm:^1.7.28"
     "@swc/jest": "npm:^0.2.36"
     "@types/jest": "npm:^29.5.13"
@@ -13033,10 +13032,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"meilisearch@npm:^0.56.0":
-  version: 0.56.0
-  resolution: "meilisearch@npm:0.56.0"
-  checksum: 10c0/d94e410ebe9ac0ad525fa3bf12d789a60fd68078a803eeb3e2adacc43f18f4d2ee3572ae1f26e052790b2aa6c848710c04332bbccd60862be2d17c883dfd43d9
+"meilisearch@npm:^0.62.0":
+  version: 0.62.0
+  resolution: "meilisearch@npm:0.62.0"
+  checksum: 10c0/7ea9d1ec69499477f809a88dac7853779299d6bf47058eb1089c64a1c1634f3d30e8afe5e42d73d6ef20647ccf7a813fc6964ed105f847c082797e856968a894
   languageName: node
   linkType: hard
 
