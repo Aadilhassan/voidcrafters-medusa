@@ -22,18 +22,18 @@
     "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit"
   },
   "dependencies": {
-    "@medusajs/admin-sdk": "2.18.0",
-    "@medusajs/cli": "2.18.0",
-    "@medusajs/file-s3": "2.18.0",
-    "@medusajs/framework": "2.18.0",
-    "@medusajs/medusa": "2.18.0",
-    "@medusajs/notification-sendgrid": "^2.21.2",
+    "@medusajs/admin-sdk": "2.22.0",
+    "@medusajs/cli": "2.22.0",
+    "@medusajs/file-s3": "2.22.0",
+    "@medusajs/framework": "2.22.0",
+    "@medusajs/medusa": "2.22.0",
+    "@medusajs/notification-sendgrid": "^2.22.0",
     "@rokmohar/medusa-plugin-meilisearch": "^1.4.1",
     "@variablevic/google-analytics-medusa": "^0.1.1",
     "json-rpc-2.0": "^1.8.1"
   },
   "devDependencies": {
-    "@medusajs/test-utils": "2.18.0",
+    "@medusajs/test-utils": "2.22.0",
     "@swc/core": "^1.7.28",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.13",
